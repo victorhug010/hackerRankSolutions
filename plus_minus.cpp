@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ vector<string> split(const string &);
  */
 
 void plusMinus(vector<int> arr) {
-    double positive, negative, zero;
+    double positive=0, negative=0, zero=0;
     int size = arr.size();
     for (int i = 0; i < size; i++)
     {
@@ -22,9 +23,10 @@ void plusMinus(vector<int> arr) {
         else if(arr[i] < 0) negative++;
         else zero++;
     }
-    cout << setprecision(6) << fixed << positive/size << endl;
-    cout << negative/size << endl;
-    cout << zero/size << endl;
+
+    cout << setprecision(6) << fixed << (isnan(positive/size) ? 0:positive/size)<< endl;
+    cout << (isnan(negative/size)? 0:negative/size) << endl;
+    cout << (isnan(zero/size) ? 0:zero/size) << endl;
 }
 
 int main()
