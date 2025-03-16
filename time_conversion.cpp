@@ -13,6 +13,7 @@ string timeConversion(string s) {
     string hourString = s.substr(0, 2);
     int hourInt = stoi(hourString);
     size_t pos = s.find("PM");
+    size_t pos2 = s.find("AM");
 
     if (pos != string::npos)
     {
@@ -20,14 +21,25 @@ string timeConversion(string s) {
         {
             hourString = to_string(hourInt + 12);
         } else {
-            if (hourInt == 12) hourString = "00";
+            if (hourInt == 12) hourString = "12";
         }
     }
 
+    if (pos2 != string::npos)
+    {
+        if (hourInt + 12 >23){
+            hourString = to_string(hourInt + 12 - 24);
+            if (hourString.size() < 2)
+            {
+                hourString.insert(0, "0");
+            }
+        }
+    }
     s.replace(0,2, hourString);
     s.erase(s.size()-2);
     return s;
 }
+
 
 int main()
 {
