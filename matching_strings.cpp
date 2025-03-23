@@ -33,15 +33,7 @@ vector<int> matchingStrings(vector<string> strings, vector<string> queries) {
 
     return res;
 }
-// 4
-// aba
-// baba
-// aba
-// xzxb
-// 3
-// aba
-// xzxb
-// ab
+
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
@@ -76,17 +68,17 @@ int main()
 
     vector<int> res = matchingStrings(strings, queries);
 
-    // for (size_t i = 0; i < res.size(); i++) {
-    //     fout << res[i];
+    for (size_t i = 0; i < res.size(); i++) {
+        fout << res[i];
 
-    //     if (i != res.size() - 1) {
-    //         fout << "\n";
-    //     }
-    // }
+        if (i != res.size() - 1) {
+            fout << "\n";
+        }
+    }
 
-    // fout << "\n";
+    fout << "\n";
 
-    // fout.close();
+    fout.close();
 
     return 0;
 }
