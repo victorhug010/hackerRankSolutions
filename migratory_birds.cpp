@@ -7,28 +7,28 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'sockMerchant' function below.
+ * Complete the 'migratoryBirds' function below.
  *
  * The function is expected to return an INTEGER.
- * The function accepts following parameters:
- *  1. INTEGER n
- *  2. INTEGER_ARRAY ar
+ * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
-int sockMerchant(int n, vector<int> ar)
+int migratoryBirds(vector<int> arr)
 {
     int res = 0;
-    vector<int> v(101);
-    sort(ar.begin(), ar.end());
+    unordered_map<int, int> birds;
 
-    for (int num : ar)
+    for (int num : arr)
     {
-        v[num] += 1;
-    }
-
-    for (int num2 : v)
-    {
-        res += num2 / 2;
+        auto it = birds.find(num);
+        if (it == birds.end())
+        {
+            birds[num] = 1;
+        }
+        else
+        {
+            birds[num] += 1;
+        }
     }
     return res;
 }
@@ -37,26 +37,26 @@ int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
 
-    string n_temp;
-    getline(cin, n_temp);
+    string arr_count_temp;
+    getline(cin, arr_count_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    int arr_count = stoi(ltrim(rtrim(arr_count_temp)));
 
-    string ar_temp_temp;
-    getline(cin, ar_temp_temp);
+    string arr_temp_temp;
+    getline(cin, arr_temp_temp);
 
-    vector<string> ar_temp = split(rtrim(ar_temp_temp));
+    vector<string> arr_temp = split(rtrim(arr_temp_temp));
 
-    vector<int> ar(n);
+    vector<int> arr(arr_count);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < arr_count; i++)
     {
-        int ar_item = stoi(ar_temp[i]);
+        int arr_item = stoi(arr_temp[i]);
 
-        ar[i] = ar_item;
+        arr[i] = arr_item;
     }
 
-    int result = sockMerchant(n, ar);
+    int result = migratoryBirds(arr);
 
     fout << result << "\n";
 
